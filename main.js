@@ -6,7 +6,12 @@ scene.background = new THREE.Color(0x1a1a2e);
 scene.fog = new THREE.Fog(0x1a1a2e, 40, 120);
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({ antialias: true });
+const renderer = new THREE.WebGLRenderer({
+    antialias: false,
+    powerPreference: "high-performance"
+});
+
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.2));
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
@@ -160,7 +165,7 @@ for (let i = 0; i < ENV_COUNT; i++) {
 // ── PLAYER ────────────────────────────────────────
 const player = new THREE.Group();
 player.position.set(0, 0, 15);
-player.rotation.y = Math.PI;
+player.rotation.y = 0;
 scene.add(player);
 
 const loader = new GLTFLoader();
